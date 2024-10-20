@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     };
-    
     async function exchangeCodeForToken(code) {
         const tokenUrl = `${keycloakConfig.url}/realms/${keycloakConfig.realm}/protocol/openid-connect/token`;
         const data = new URLSearchParams({
@@ -62,5 +61,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p><strong>Full Name:</strong> ${userInfo.name}</p>
             `;
         }
+    }
+
+    document.getElementById('logoutBtn')?.addEventListener('click', () => {
+        logoutUser();
+    });
+
+    function logoutUser() {
+        const logoutUrl = `${keycloakConfig.url}/realms/${keycloakConfig.realm}/protocol/openid-connect/logout?redirect_uri=${keycloakConfig.redirectUri}`;
+        localStorage.removeItem('access_token');
+        window.location.href = logoutUrl;
     }
 });
