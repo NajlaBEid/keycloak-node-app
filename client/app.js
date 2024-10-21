@@ -1,3 +1,5 @@
+
+
 document.addEventListener('DOMContentLoaded', async () => {
     const keycloakConfig = {
         url: 'http://localhost:8080/auth',
